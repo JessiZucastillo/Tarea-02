@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juego Dados</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+	<style>
+
+    body {
+      background-color: #f32655;
+      margin: 10px;
+      height: 100%;
+    }
+
+    .title {
+      text-align: center;
+      background-color: #fff;
+      color: #333;
+      font-family: "Franchise", sans-serif;
+      font-size: 90px;
+      margin-bottom: 10px;
+      padding: 30px 20px;
+    }
+
+    @font-face {
+      font-family: "Franchise";
+      src: url('http://lab.nearpod.com/bodymovin/demo/franchise/fonts/Franchise-Bold.ttf') format("truetype");
+    }
+
+    img{
+     padding-top: 10%;
+     align-items: center;
+    }
+</style>
+
+    <div class="title">Juego de Dados</div>
+		<br>
+
+    <div class="Container" id="dados">
+      <div class="row">
+				  <div class="col-lg-4 col-lg-offset-4">
+						<div class= "col-lg-12 col-md-12 col-sm-12 col-xs-12" id="dis">
+						</div>
+					</div>
+				</div>
+			</div>
+		<div id="words"></div>
+
+<br>
+<div>
+		<div class="col-lg-12 text-center">
+		  <button type="button" class="btn btn-primary" id="play">Play</button>
+			<button type="button" class="btn btn-info" id="stop">Stop</button>
+		</div>
+	</div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+   <script>
+   var next=new Image();
+   var a;
+   $("#play").click(function(e){
+           a=2;
+           $("#dados").show();
+
+           var images = ["images/dado1.png", "images/dado2.png", "images/dado3.png", "images/dado4.png", "images/dado5.png", "images/dado6.png"];
+
+           $("#dis").html("<img id='d' class='center-block 'src='" +images[0] +"'>").show()
+           setImage(2);
+
+         function setImage(id) {
+             if (a==2){
+             images.push(images.shift())
+                 next.onload=function(){
+                   $("#dis img").attr("src", this.src)
+                 }
+             next.src= images[0]
+           return setTimeout(setImage, 40);
+
+         }}
+         if(a==1){
+           $("#dis").html("<img id='d' class='center-block 'src='" +images[0] +"'>").show()
+         }
+   });
+    $("#stop").click(function(e){
+             a=1;
+           });
+   </script>
+    </body>
+		</html>
